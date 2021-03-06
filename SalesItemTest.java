@@ -19,7 +19,6 @@ public class SalesItemTest
     private SalesItem texbook;
 
 
-
     /**
      * Default constructor for test class SalesItemTest
      */
