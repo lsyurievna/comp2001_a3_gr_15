@@ -1,4 +1,8 @@
 
+/** 
+ * @author Liudmila Strelnikova
+ * @version 07.03.2021
+ */
 
 import static org.junit.Assert.*;
 import org.junit.After;
@@ -16,7 +20,7 @@ public class SalesItemTest
     private SalesItem mug;
     private SalesItem time;
     private SalesItem dollar;
-    private SalesItem texbook;
+    private SalesItem textbook;
 
 
     /**
@@ -35,15 +39,23 @@ public class SalesItemTest
     public void setUp()
     {
         mug = new SalesItem("Mug", -1);
+        
         time = new SalesItem("The concept of time", 0);
-        dollar = new SalesItem("One dollar", 1);
-        texbook = new SalesItem("Any university textbook that you need", 500000);
-        texbook.addComment("Poor Student", "I did not eat for three days but I got an A in JAVA thanks to this book", 5);
-        texbook.addComment("Oxford Student", "Not helpful at all, read only the intro and got bored instantly", 1);
-        texbook.addComment("Emma WhatSon", "Love books from this author, very good example projects but have to get a book with answers separately", 4);
         time.addComment("Bobby McGill", "Fake item but love the message", 2);
         time.addComment("NiceGuy", "I got two of these", 3);
+        time.upvoteComment(1);
+        time.upvoteComment(2);
+        
+        dollar = new SalesItem("One dollar", 1);
         dollar.addComment("Lucy Lu", "That's so cheap!", 5);
+        
+        textbook = new SalesItem("Any university textbook that you need", 500000);
+        textbook.addComment("Poor Student", "I did not eat for three days but I got an A in JAVA thanks to this book", 5);
+        textbook.addComment("Oxford Student", "Not helpful at all, read only the intro and got bored instantly", 1);
+        textbook.addComment("Emma WhatSon", "Love books from this author, very good example projects but have to get a book with answers separately", 4);
+        textbook.upvoteComment(0);
+        textbook.upvoteComment(0);
+        textbook.upvoteComment(1);
     }
 
     /**
@@ -61,7 +73,7 @@ public class SalesItemTest
     @Test
     public void test_getNumberOfComments()
     {
-        assertEquals(3, texbook.getNumberOfComments());
+        assertEquals(3, textbook.getNumberOfComments());
         assertEquals(2, time.getNumberOfComments());
         assertEquals(0, mug.getNumberOfComments());
         assertEquals(1, dollar.getNumberOfComments());
@@ -75,7 +87,19 @@ public class SalesItemTest
         assertEquals(false, mug.addComment("Jim Bob Joe", "Liked it too much", 6));
         assertEquals(false, mug.addComment("Bob Jim Joe", "Disliked it too much", 0));
     }
+
+    
+
+    @Test
+    public void test_findMostHelpful()
+    {
+        assertEquals(textbook.getComment(0), textbook.findMostHelpfulComment());
+        assertEquals(time.getComment(1), time.findMostHelpfulComment());
+    }
 }
+
+
+
 
 
 

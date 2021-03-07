@@ -9,8 +9,8 @@ import java.util.Iterator;
  * NOTE: The current version is incomplete! Currently, only code dealing with customer 
  * comments is here.
  * 
- * @author Michael Kölling and David J. Barnes
- * @version 0.1 (2016.02.29)
+ * @author Michael Kölling and David J. Barnes, Liudmila Strelnikova (added a few methods that facilitate testing of the class).
+ * @version 07.03.2021
  */
 public class SalesItem
 {
@@ -50,6 +50,16 @@ public class SalesItem
     public int getNumberOfComments()
     {
         return comments.size();
+    }
+    
+    /**
+     * Returns object of type Comment given the ints index
+     * @param index number of the comment minus one
+     * @return comment object
+     */
+    public Comment getComment(int index)
+    {
+        return comments.get(index);
     }
     
     /**
