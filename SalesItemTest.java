@@ -42,6 +42,8 @@ public class SalesItemTest
         texbook.addComment("Oxford Student", "Not helpful at all, read only the intro and got bored instantly", 1);
         texbook.addComment("Emma WhatSon", "Love books from this author, very good example projects but have to get a book with answers separately", 4);
         time.addComment("Bobby McGill", "Fake item but love the message", 2);
+        time.addComment("NiceGuy", "I got two of these", 3);
+        dollar.addComment("Lucy Lu", "That's so cheap!", 5);
     }
 
     /**
@@ -60,9 +62,9 @@ public class SalesItemTest
     public void test_getNumberOfComments()
     {
         assertEquals(3, texbook.getNumberOfComments());
-        assertEquals(1, time.getNumberOfComments());
+        assertEquals(2, time.getNumberOfComments());
         assertEquals(0, mug.getNumberOfComments());
-        assertEquals(0, dollar.getNumberOfComments());
+        assertEquals(1, dollar.getNumberOfComments());
     }
 }
 
