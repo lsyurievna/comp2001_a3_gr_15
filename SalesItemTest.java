@@ -66,6 +66,16 @@ public class SalesItemTest
         assertEquals(0, mug.getNumberOfComments());
         assertEquals(1, dollar.getNumberOfComments());
     }
+
+    @Test
+    public void test_addComment()
+    {
+        assertEquals(true, dollar.addComment("iamnotabot", "Excellent stuff", 5));
+        assertEquals(false, dollar.addComment("iamnotabot", "Perfect stuff", 5));
+        assertEquals(false, mug.addComment("Jim Bob Joe", "Liked it too much", 6));
+        assertEquals(false, mug.addComment("Bob Jim Joe", "Disliked it too much", 0));
+    }
 }
+
 
 
