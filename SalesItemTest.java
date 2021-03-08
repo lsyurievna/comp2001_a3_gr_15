@@ -1,24 +1,20 @@
-
-/** 
- * @author Liudmila Strelnikova
- * @version 08.03.2021
- */
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * The test class SalesItemTest.
- *
- * @author  (your name)
- * @version (a version number or a date)
+/** 
+ * This a testing class for class SalesItem. It contains methods
+ * that verify correctness of all SalesItem public methods
+ * (methods getName, getPrice, showInfo and SalesItem are ignored)
+ * @author Liudmila Strelnikova
+ * @version 08.03.2021
  */
+
 public class SalesItemTest
 {
-    private SalesItem mug;
-    private SalesItem time;
+    private SalesItem mug; 
+    private SalesItem time; 
     private SalesItem dollar;
     private SalesItem textbook;
 
@@ -43,8 +39,8 @@ public class SalesItemTest
         time = new SalesItem("The concept of time", 0);
         time.addComment("Bobby McGill", "Fake item but love the message", 2);
         time.addComment("NiceGuy", "I got two of these", 3);
+        time.upvoteComment(0);
         time.upvoteComment(1);
-        time.upvoteComment(2);
         
         dollar = new SalesItem("One dollar", 1);
         dollar.addComment("Lucy Lu", "That's so cheap!", 5);
@@ -88,29 +84,24 @@ public class SalesItemTest
         assertEquals(false, mug.addComment("Bob Jim Joe", "Disliked it too much", 0));
     }
 
-    
-
-    @Test
-    public void test_findMostHelpful()
-    {
-        assertEquals(textbook.getComment(0), textbook.findMostHelpfulComment());
-        assertEquals(time.getComment(1), time.findMostHelpfulComment());
-    }
+   
     
     @Test
     public void test_removeComment()
     {
-        textbook.removeComment(0); // romove first comment, check that it's deleted
-        assertEquals("Not helpful at all, read only the intro and got bored instantly", textbook.getCommnetText(0));
-        textbook.removeComment(1); //romove last comment, check that it and not the first one is deleted
-        assertEquals("Not helpful at all, read only the intro and got bored instantly", textbook.getCommnetText(0));
-        textbook.removeComment(5); //out of range, all comments should stay as they were
-        assertEquals("Not helpful at all, read the into and got bored instantly", textbook.getCommnetText(0)); 
-        mug.removeComment(0); //out of range (empty array), error message should appear
+        textbook.removeComment(0);
+        assertEquals("Not helpful at all, read only the intro and got bored instantly", textbook.getCommentText(0));
+        textbook.removeComment(1); 
+        assertEquals("Not helpful at all, read only the intro and got bored instantly", textbook.getCommentText(0));
+        textbook.removeComment(5);
+        assertEquals("Not helpful at all, read only the intro and got bored instantly", textbook.getCommentText(0)); 
+        textbook.removeComment(-1);
+        assertEquals("Not helpful at all, read only the intro and got bored instantly", textbook.getCommentText(0));
     }
     
+    
     @Test
-    public void testUpvote()
+    public void test_upvoteComment()
     {
         time.upvoteComment(0);
         assertEquals(1, time.getVotes(0));
@@ -125,21 +116,20 @@ public class SalesItemTest
     }
 
     @Test
-    public void test_downvote()
+    public void test_downvoteComment()
     {
-        time.downvoteComment(2); //downvote to 0
-        assertEquals(0, time.getVotes(2));
-        textbook.downvoteComment(0); //downvote to 1
-        assertEquals(1, textbook.getVotes(0)); 
+        time.downvoteComment(1); 
+        assertEquals(0, time.getVotes(1));
+        textbook.downvoteComment(0); 
+        assertEquals(0, textbook.getVotes(0)); 
+        time.downvoteComment(-5);
+        assertEquals(0, time.getVotes(0));
+        assertEquals(0, time.getVotes(1));
+        time.downvoteComment(5);
+        assertEquals(0, time.getVotes(0));
+        assertEquals(0, time.getVotes(1));
     }
 
-    @Test
-    public void test_SalesItem()
-    {
-        SalesItem barracuda = new SalesItem("Barracuda", 65); // a normal posting
-        SalesItem keyboard = new SalesItem("Gaming keyboard", -1); // a positng with negative price should be rejected
-        assertEquals(0, keyboard.getPrice());
-    }
 }
 
 

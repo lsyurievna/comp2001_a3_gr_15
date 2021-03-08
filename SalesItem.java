@@ -59,7 +59,7 @@ public class SalesItem
      * @param index number of the comment minus one
      * @return what the comment says
      */
-    public String getCommnetText(int index)
+    public String getCommentText(int index)
     {
         return comments.get(index).getText();
     }
