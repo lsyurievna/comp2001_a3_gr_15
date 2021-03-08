@@ -45,14 +45,6 @@ public class SalesItem
     }
     
     /**
-     * Return the number of customer comments for this item.
-     */
-    public int getNumberOfComments()
-    {
-        return comments.size();
-    }
-    
-    /**
      * Returns object of type Comment given the ints index
      * @param index number of the comment minus one
      * @return comment object
@@ -61,6 +53,34 @@ public class SalesItem
     {
         return comments.get(index);
     }
+    
+    /**
+     * Returns the text for the a particlular comment
+     * @param index number of the comment minus one
+     * @return what the comment says
+     */
+    public String getCommnetText(int index)
+    {
+        return comments.get(index).getText();
+    }
+    
+    /**
+     * Returns the number of votes for a particular comment
+     * @param index number of the comment minus one
+     */
+    public int getVotes(int index)
+    {
+        return comments.get(index).getVoteCount();
+    }
+    
+    /**
+     * Return the number of customer comments for this item.
+     */
+    public int getNumberOfComments()
+    {
+        return comments.size();
+    }
+    
     
     /**
      * Add a comment to the comment list of this sales item. Return true if successful;
